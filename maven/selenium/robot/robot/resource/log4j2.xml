@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+	<appenders>
+		<console name="Console" target="SYSTEM_OUT">
+			<patternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss.SSSZ} %-5level %logger{36}.%M - %msg%n</pattern>
+			</patternLayout>
+		</console>
+
+		<rollingFile name="RollingFile" fileName="log/robot.log"
+			filePattern="monitor_%d{yyyy-MM-dd}.log.gz">
+			<patternLayout>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSSZ} %-5level %logger{36}.%M - %msg%n</pattern>
+			</patternLayout>
+			<policies>
+				<timeBasedTriggeringPolicy />
+			</policies>
+		</rollingFile>
+	</appenders>
+
+	<loggers>
+		<root level="trace">
+			<appender-ref ref="Console" />
+			<appender-ref ref="RollingFile" />
+		</root>
+	</loggers>
+
+</configuration>
