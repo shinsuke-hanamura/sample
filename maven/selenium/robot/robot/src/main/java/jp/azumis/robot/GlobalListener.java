@@ -11,6 +11,10 @@ public class GlobalListener {
     private static Logger logger = LoggerFactory.getLogger(GlobalListener.class);
     
     public static void main(String[] args) {
+        
+        // 画面キャプチャー
+        Capture cap = new Capture();
+        
         try {
             GlobalScreen.registerNativeHook();
         }

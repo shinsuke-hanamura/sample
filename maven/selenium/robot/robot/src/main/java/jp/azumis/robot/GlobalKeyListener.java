@@ -20,8 +20,12 @@ public class GlobalKeyListener implements NativeKeyListener {
         };
     
     private Map<Integer, Boolean> keyPressedMap;
+    // 画面キャプチャーは別スレッドで行う
+    // private Capture cap;
+
     
     public GlobalKeyListener() {
+        // this.cap = new Capture();
         this.keyPressedMap = new TreeMap();
         for (int k : PRESERVED_KEY_CODE) {
             this.keyPressedMap.put(k, false);
@@ -46,15 +50,15 @@ public class GlobalKeyListener implements NativeKeyListener {
         if (keyCode > 0) {
             if (!keyPressedMap.get(keyCode)) logger.debug("Key Pressed: " + NativeKeyEvent.getKeyText(keyCode));
             keyPressedMap.put(keyCode, true);
+
+            // 画面キャプチャーは別スレッドで行う
+//            // wキーが押された場合、画面キャプチャーする
+//            if (keyCode == NativeKeyEvent.VC_W) {
+//                Calendar capTime = Calendar.getInstance();
+//                logger.debug("screenShot at : " + DateTimeManager.toRFC3339String(capTime));
+//                cap.screenShot(capTime);
+//            }
         }
-        
-        //        if (keyCode == NativeKeyEvent.VC_ESCAPE) {
-        //            try {
-        //                GlobalScreen.unregisterNativeHook();
-        //            } catch (NativeHookException e1) {
-        //                e1.printStackTrace();
-        //            }
-        //        }
     }
 
     public void nativeKeyReleased(NativeKeyEvent e) {
