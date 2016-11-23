@@ -14,6 +14,8 @@ public class GlobalListener {
         
         // 画面キャプチャー
         Capture cap = new Capture();
+        CaptureThread ct = new CaptureThread("captureThread 1");
+        //ct.start();
         
         try {
             GlobalScreen.registerNativeHook();
